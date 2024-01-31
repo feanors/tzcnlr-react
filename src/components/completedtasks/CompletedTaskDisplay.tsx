@@ -5,7 +5,7 @@ import {
   GridValueGetterParams,
 } from "@mui/x-data-grid";
 import dayjs from "dayjs";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { ArrowBackSharp, CalculateRounded, Save } from "@mui/icons-material";
 import { CompletedTask } from "../../apis/api.ts";
@@ -212,7 +212,10 @@ export default function CompletedTaskDisplay({
         pageSizeOptions={[5, 10, 20]}
       />
       <br />
-      <Box display={"flex"} justifyContent={"space-between"}>
+      <Stack
+        direction={{ xs: "column", sm: "row" }}
+        justifyContent={"space-between"}
+      >
         <IconButton
           onClick={() => {
             if (
@@ -227,7 +230,7 @@ export default function CompletedTaskDisplay({
               openFiltersApplied();
             }
           }}
-          sx={{ borderRadius: "0" }}
+          sx={{ borderRadius: "0", justifyContent: "left" }}
         >
           <Typography fontSize={"20px"}>Hesap dökümü oluştur </Typography>
           <CalculateRounded />
@@ -247,7 +250,7 @@ export default function CompletedTaskDisplay({
           isOpen={filtersApplied}
           onClose={closeFiltersApplied}
         />
-        <IconButton sx={{ borderRadius: "0px" }}>
+        <IconButton sx={{ borderRadius: "0px", justifyContent: "left" }}>
           <CSVLink
             style={{
               color: "inherit",
@@ -266,11 +269,11 @@ export default function CompletedTaskDisplay({
             }
             data={completedTasks}
           >
-            <Typography fontSize={"20px"}>CSV yedeği oluştur </Typography>
+            <Typography fontSize={"20px"}>CSV yedeği oluştur</Typography>
             <Save />{" "}
           </CSVLink>
         </IconButton>
-      </Box>
+      </Stack>
       <List sx={{ maxWidth: "500px" }}></List>
     </Box>
   );
