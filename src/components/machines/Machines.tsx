@@ -187,10 +187,13 @@ export default function Machines({
   handleDeleteMachineByName,
   handlePostNewMachine,
   handleFetchMachines,
+  onAuthTokenChange,
+  authToken,
 }) {
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchMachines();
-  }, []);
+  }, [authToken]);
   const [selectedMachine, setSelectedMachine] = useState("");
   const [createMachineModalOpen, setCreateMachineModalOpen] = useState(false);
   const closeCreateMachineModal = () => setCreateMachineModalOpen(false);

@@ -126,10 +126,13 @@ export default function EditCompany({
   handleUpdateCompanyByName,
   handleDeleteCompanyByName,
   handleFetchCompanies,
+  onAuthTokenChange,
+  authToken,
 }) {
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchCompanies();
-  }, []);
+  }, [authToken]);
   const [deleteModalOpen, setDeleteModalOpen] = React.useState(false);
   const closeDeleteModal = () => setDeleteModalOpen(false);
   const openDeleteModal = () => setDeleteModalOpen(true);

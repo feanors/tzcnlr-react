@@ -113,11 +113,14 @@ export default function CompletedTaskDisplay({
   companies,
   machines,
   companyBranchMap,
+  onAuthTokenChange,
+  authToken,
 }) {
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchCompanyBranchMap();
     handleFetchCompanies();
-  }, []);
+  }, [authToken]);
 
   const [totalMachineTimePerMachine, setTotalMachineTimePerMachine] = useState(
     new Map<string, number>(),
@@ -193,6 +196,8 @@ export default function CompletedTaskDisplay({
         setStartDate={setStartDate}
         setSelectedBranch={setSelectedBranch}
         setSelectedCompanyName={setSelectedCompanyName}
+        authToken={authToken}
+        onAuthTokenChange={onAuthTokenChange}
       />
       <DataGrid
         sx={{ fontSize: "17px" }}

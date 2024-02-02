@@ -291,11 +291,14 @@ export default function CompanyBranch({
   handleUpdateBranchByName,
   handleFetchCompanies,
   handleFetchCompanyBranchMap,
+  onAuthTokenChange,
+  authToken,
 }) {
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchCompanies();
     handleFetchCompanyBranchMap();
-  }, []);
+  }, [authToken]);
   useEffect(() => {
     setBranchViewOpenArray(new Array(companies.length).fill(false));
   }, [companies]);

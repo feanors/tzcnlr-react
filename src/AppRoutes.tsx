@@ -45,7 +45,7 @@ export function AppRoutes() {
   const closeProgressModal = () => setProgressModalOpen(false);
   const openProgressModal = () => setProgressModalOpen(true);
 
-  useEffect(() => {
+  const updateFetchWithJWT = () => {
     const originalFetch = window.fetch;
 
     window.fetch = (url, options = {}) => {
@@ -61,11 +61,12 @@ export function AppRoutes() {
 
       return originalFetch(url, requestOptions);
     };
+  };
 
+  useEffect(() => {
+    updateFetchWithJWT();
     // auth check
     handleFetchMachines();
-    handleFetchCompanyBranchMap();
-    handleFetchCompanies();
   }, [authToken]);
 
   const handleAPICall = async (apiMethod, onSuccess, displayStatus = true) => {
@@ -269,6 +270,8 @@ export function AppRoutes() {
             companies={companies}
             handleUpdateCompanyByName={handleUpdateCompanyByName}
             handleDeleteCompanyByName={handleDeleteCompanyByName}
+            authToken={authToken}
+            onAuthTokenChange={updateFetchWithJWT}
           />
           <TransactionStatusModal
             isOpen={progressModalOpen}
@@ -293,6 +296,8 @@ export function AppRoutes() {
             handleUpdateMachineByName={handleUpdateMachineByName}
             handleDeleteMachineByName={handleDeleteMachineByName}
             handlePostNewMachine={handlePostNewMachine}
+            authToken={authToken}
+            onAuthTokenChange={updateFetchWithJWT}
           />
           <TransactionStatusModal
             isOpen={progressModalOpen}
@@ -320,6 +325,8 @@ export function AppRoutes() {
             handlePostNewBranch={handlePostNewBranch}
             handleDeletebranchByName={handleDeleteBranchByName}
             handleUpdateBranchByName={handleUpdateBranchByName}
+            authToken={authToken}
+            onAuthTokenChange={updateFetchWithJWT}
           />
           <TransactionStatusModal
             isOpen={progressModalOpen}
@@ -346,6 +353,8 @@ export function AppRoutes() {
             companies={companies}
             companyBranchMap={companyBranchMap}
             machines={machines}
+            authToken={authToken}
+            onAuthTokenChange={updateFetchWithJWT}
           />
         </Box>
       ),

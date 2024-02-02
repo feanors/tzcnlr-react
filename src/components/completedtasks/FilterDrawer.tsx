@@ -33,6 +33,8 @@ export default function FilterDrawer({
   setEndDate,
   setSelectedCompanyName,
   setSelectedBranch,
+  authToken,
+  onAuthTokenChange,
 }) {
   const [state, setState] = React.useState({
     top: false,
@@ -76,13 +78,14 @@ export default function FilterDrawer({
   const [filtersChanged, setFiltersChanged] = useState(false);
 
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchCompletedTasks(
       startDate,
       endDate,
       selectedCompany,
       selectedBranch,
     );
-  }, [filtersChanged]);
+  }, [authToken, filtersChanged]);
 
   const list = (anchor: Anchor) => (
     <Box
