@@ -64,6 +64,8 @@ export function AppRoutes() {
 
     // auth check
     handleFetchMachines();
+    handleFetchCompanyBranchMap();
+    handleFetchCompanies();
   }, [authToken]);
 
   const handleAPICall = async (apiMethod, onSuccess, displayStatus = true) => {
@@ -339,6 +341,8 @@ export function AppRoutes() {
           <CompletedTaskDisplay
             completedTasks={completedTasks}
             handleFetchCompletedTasks={handleFetchCompletedTasks}
+            handleFetchCompanyBranchMap={handleFetchCompanyBranchMap}
+            handleFetchCompanies={handleFetchCompanies}
             companies={companies}
             companyBranchMap={companyBranchMap}
             machines={machines}

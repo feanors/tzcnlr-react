@@ -11,7 +11,7 @@ import { ArrowBackSharp, CalculateRounded, Save } from "@mui/icons-material";
 import { CompletedTask } from "../../apis/api.ts";
 import FilterDrawer from "./FilterDrawer.tsx";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import List from "@mui/material/List";
 import TimePerMachineModal from "./TimePerMachineModal.tsx";
 import SelectAllFiltersPopup from "./SelectAllFiltersPopup.tsx";
@@ -108,10 +108,17 @@ const columns: GridColDef[] = [
 export default function CompletedTaskDisplay({
   completedTasks,
   handleFetchCompletedTasks,
+  handleFetchCompanyBranchMap,
+  handleFetchCompanies,
   companies,
   machines,
   companyBranchMap,
 }) {
+  useEffect(() => {
+    handleFetchCompanyBranchMap();
+    handleFetchCompanies();
+  }, []);
+
   const [totalMachineTimePerMachine, setTotalMachineTimePerMachine] = useState(
     new Map<string, number>(),
   );
