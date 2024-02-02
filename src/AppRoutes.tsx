@@ -247,6 +247,8 @@ export function AppRoutes() {
             companyBranchMap={companyBranchMap}
             machines={machines}
             handlePostCompletedTask={handlePostNewCompletedTask}
+            authToken={authToken}
+            onAuthTokenChange={updateFetchWithJWT}
           />
           <TransactionStatusModal
             isOpen={progressModalOpen}

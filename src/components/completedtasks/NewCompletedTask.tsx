@@ -33,12 +33,15 @@ function NewCompletedTask({
   handleFetchMachines,
   handleFetchCompanies,
   handleFetchCompanyBranchMap,
+  authToken,
+  onAuthTokenChange,
 }) {
   useEffect(() => {
+    onAuthTokenChange();
     handleFetchMachines();
     handleFetchCompanies();
     handleFetchCompanyBranchMap();
-  }, []);
+  }, [authToken]);
 
   const durations = [];
   for (let i = 1; i < 24; i++) {
