@@ -33,6 +33,7 @@ import { Box } from "@mui/material";
 import Login from "./components/login/Login.tsx";
 
 export function AppRoutes() {
+  const [authToken, setAuthToken] = useState(localStorage.getItem("token"));
   const [companies, setCompanies] = useState<Company[]>([]);
   const [companyBranchMap, setCompanyBranchMap] = useState<
     Map<string, Branch[]>
@@ -44,10 +45,7 @@ export function AppRoutes() {
   const closeProgressModal = () => setProgressModalOpen(false);
   const openProgressModal = () => setProgressModalOpen(true);
 
-  const [authToken, setAuthToken] = useState(localStorage.getItem("token"));
-
   useEffect(() => {
-    console.log(authToken);
     const originalFetch = window.fetch;
 
     window.fetch = (url, options = {}) => {
@@ -225,7 +223,7 @@ export function AppRoutes() {
           maxWidth={"600px"}
           width={"100%"}
         >
-          <HomePage handleFetchMatchines={handleFetchMachines} />
+          <HomePage />
         </Box>
       ),
     },
