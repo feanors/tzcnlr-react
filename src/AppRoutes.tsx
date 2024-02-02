@@ -203,7 +203,6 @@ export function AppRoutes() {
       (token) => {
         localStorage.setItem("token", token);
         setAuthToken(token);
-        navigate("/home");
         closeProgressModal();
         navigate("/home");
       },
